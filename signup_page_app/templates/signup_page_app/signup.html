@@ -1,0 +1,22 @@
+{% extends 'signup_page_app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="head"></div>
+<div class="container center">
+	<h2 class="absolute">SignUp form </h2>
+	<form onsubmit="return validtionform()" action="{% url 'signup' %}" method="post" > 
+		
+				{% csrf_token %}
+				{% for field in form %}
+					{{ field.label_tag }}
+					{{ field }}
+					<span id="span_{{ field.name }}"></span>
+					{{ field.errors }}
+				{% endfor %}
+				{{ error }}
+			
+	<input type="submit" value="Submit" class="btn" />
+	</form>
+</div>	
+
+{% endblock %}

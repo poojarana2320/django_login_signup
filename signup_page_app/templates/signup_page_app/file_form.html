@@ -1,0 +1,47 @@
+{% extends 'signup_page_app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="menu">
+	<div class="container">
+	   
+			<div class="left-menu">
+				<ul>
+					<li>
+						{{ user.email}}    
+					</li>
+					<li>
+						<a href="#">Home</a>
+					</li>
+				</ul>  
+			</div>
+				
+			<div class="right-menu">
+				<ul>
+		
+					<li>
+						<a href="{% url 'logout' %}">logout</a>
+					</li>
+
+				</ul>  
+			</div>   
+		
+	</div> 
+</div>
+
+<h2>Upload File </h2>
+<form action="{% url 'upload' %}" method="post"  enctype="multipart/form-data"> 
+	
+		    {% csrf_token %}
+		    {% for field in form %}
+		    	{{ field.label_tag }}
+		    	{{ field }}
+
+		    	<span id="span_{{ field.name }}"></span>
+		    	{{ field.errors }}
+		    {% endfor %}
+		 	{{ error }}
+		
+<input type="submit" value="Submit" class="btn" />
+</form>
+	
+{% endblock %}
